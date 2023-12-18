@@ -14,7 +14,9 @@ public class HealCommand implements CommandExecutor {
             return true;
         }
         Player p = (Player) sender;
-        p.setHealth(20.0);
+        if(p.isOp()) {
+            p.setHealth(20.0);
+        }
         return true;
     }
 }

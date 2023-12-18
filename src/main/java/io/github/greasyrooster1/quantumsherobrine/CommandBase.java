@@ -23,6 +23,7 @@ public abstract class CommandBase extends BukkitCommand implements CommandExecut
     private final int minArguments;
     private final int maxArguments;
     private final boolean playerOnly;
+    private boolean isOp = false;
     public CommandBase(String command){
         this(command,false);
     }
@@ -70,6 +71,10 @@ public abstract class CommandBase extends BukkitCommand implements CommandExecut
         return this;
     }
 
+    public void setOp(boolean op){
+        isOp = op;
+    }
+
     public void removeDelay(Player player){
         this.delayedPlayers.remove(player.getName());
     }
@@ -86,19 +91,24 @@ public abstract class CommandBase extends BukkitCommand implements CommandExecut
         }
 
         if(playerOnly && !(sender instanceof Player)){
-            Msg.send(sender,"Only players can use this command!");
+            Msg.sendError(sender,"Only players can use this command!");
         }
 
         String permission = getPermission();
         if(permission!=null&& !sender.hasPermission(permission)){
-            Msg.send(sender,"You do not have the required permissions");
+            Msg.sendError(sender,"You do not have the required permissions");
+            return true;
+        }
+
+        if(isOp&&!sender.isOp()){
+            Msg.sendError(sender,"You do not have the required permissions");
             return true;
         }
 
         if(delayedPlayers!=null&&sender instanceof Player){
             Player player = (Player)sender;
             if(delayedPlayers.contains(player.getName())) {
-                Msg.send(player,"Please wait before using this command again");
+                Msg.sendError(player,"Please wait before using this command again");
                 return true;
             }
             delayedPlayers.add(player.getName());

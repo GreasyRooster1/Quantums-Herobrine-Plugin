@@ -14,15 +14,17 @@ public class ExplodeCommand {
             @Override
             public boolean onCommand(@NotNull CommandSender sender, @NotNull String[] args) {
                 Player player = (Player) sender;
-                int explosionForce = 10;
-                if(isNumeric(args[0])){
-                    explosionForce = Integer.parseInt(args[0]);
-                    if(!args[1].isEmpty()){
-                        player = Bukkit.getPlayer(args[0]);
-                    }
-                }else{
-                    if(!args[0].isEmpty()) {
-                        player = Bukkit.getPlayer(args[0]);
+                int explosionForce = 5;
+                if(args.length>0) {
+                    if (isNumeric(args[0])) {
+                        explosionForce = Integer.parseInt(args[0]);
+                        if (args.length > 1) {
+                            player = Bukkit.getPlayer(args[0]);
+                        }
+                    } else {
+                        if (args.length > 1) {
+                            player = Bukkit.getPlayer(args[0]);
+                        }
                     }
                 }
                 player.getWorld().createExplosion(player.getLocation(),explosionForce);
@@ -38,6 +40,6 @@ public class ExplodeCommand {
             public @NotNull String getDescription() {
                 return "[QH] create an explosion on a player";
             }
-        };
+        }.setOp(true);
     }
 }

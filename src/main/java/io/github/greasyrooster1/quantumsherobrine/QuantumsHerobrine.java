@@ -1,5 +1,6 @@
 package io.github.greasyrooster1.quantumsherobrine;
 
+import io.github.greasyrooster1.quantumsherobrine.Commands.ExplodeCommand;
 import io.github.greasyrooster1.quantumsherobrine.Commands.FeedCommand;
 import io.github.greasyrooster1.quantumsherobrine.Commands.HealCommand;
 import io.github.greasyrooster1.quantumsherobrine.Commands.TestCommand;
@@ -18,6 +19,7 @@ public final class QuantumsHerobrine extends JavaPlugin {
         getCommand("test").setExecutor(new TestCommand());
         getCommand("heal").setExecutor(new HealCommand());
         new FeedCommand().register();
+        new ExplodeCommand().register();
     }
 
     @Override

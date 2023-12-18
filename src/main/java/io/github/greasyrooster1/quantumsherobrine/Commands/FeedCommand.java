@@ -26,6 +26,6 @@ public class FeedCommand {
             public @NotNull String getDescription() {
                 return "[QH] regain full hunger";
             }
-        };
+        }.setOp(true);
     }
 }
