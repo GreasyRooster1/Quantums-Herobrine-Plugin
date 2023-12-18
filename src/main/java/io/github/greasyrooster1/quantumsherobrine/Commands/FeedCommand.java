@@ -22,6 +22,10 @@ public class FeedCommand {
             public String getUsage() {
                 return "/feed";
             }
+            @Override
+            public @NotNull String getDescription() {
+                return "[QH] regain full hunger";
+            }
         };
     }
 }
