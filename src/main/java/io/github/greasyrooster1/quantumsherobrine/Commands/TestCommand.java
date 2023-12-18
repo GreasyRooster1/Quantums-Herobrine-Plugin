@@ -1,4 +1,4 @@
-package io.github.greasyrooster1.quantumsherobrine;
+package io.github.greasyrooster1.quantumsherobrine.Commands;
 
 import io.github.greasyrooster1.quantumsherobrine.Util.Msg;
 import org.bukkit.command.Command;

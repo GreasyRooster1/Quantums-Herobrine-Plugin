@@ -4,9 +4,8 @@ main: io.github.greasyrooster1.quantumsherobrine.QuantumsHerobrine
 api-version: '1.20'
 commands:
   test:
-    description: [QH] just a test
+    description: just a test
     usage: /test
   heal:
-    description: [QH] heals a player
-    usage: /heal [player]
-    aliases: hp
+    description: heals yourself
+    usage: /heal
