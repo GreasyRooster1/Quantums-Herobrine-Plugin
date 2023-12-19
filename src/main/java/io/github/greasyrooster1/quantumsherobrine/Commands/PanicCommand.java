@@ -58,8 +58,10 @@ public class PanicCommand {
     }
     public void panic(CommandSender sender){
         Msg.send(sender,"&dKilling herobrine...");
-        HerobrineData.herobrine.despawn();
-        HerobrineData.herobrine = null;
+        if(HerobrineData.herobrine!=null) {
+            HerobrineData.herobrine.despawn();
+            HerobrineData.herobrine = null;
+        }
         Msg.send(sender,"&dDe-spawning Citizens NPCs");
         for (Iterator<NPC> it = CitizensAPI.getNPCRegistry().iterator(); it.hasNext(); ) {
             NPC npc = it.next();
