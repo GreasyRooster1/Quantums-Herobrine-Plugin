@@ -1,5 +1,7 @@
 package io.github.greasyrooster1.quantumsherobrine.Util;
 
+import net.kyori.adventure.text.Component;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 
@@ -22,5 +24,8 @@ public class Msg {
 
     public static void send(CommandSender sender, String message, String prefix){
         sender.sendMessage(ChatColor.translateAlternateColorCodes('&',prefix+message));
+    }
+    public static void broadcast(CommandSender sender, String message){
+        Bukkit.broadcast(Component.text(ChatColor.translateAlternateColorCodes('&',message)));
     }
 }
