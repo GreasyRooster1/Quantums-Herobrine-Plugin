@@ -21,11 +21,11 @@ public class MorphCommand {
             @Override
             public boolean onCommand(@NotNull CommandSender sender, @NotNull String[] args) {
                 Player target = (Player) sender;
-                if(args.length==2) {
-                    if (Objects.equals(args[1], "start")) {
+                if(args.length==1) {
+                    if (Objects.equals(args[0], "start")) {
                         HerobrineData.herobrine.removeTrait(MorphTrait.class);
                         HerobrineData.herobrine.addTrait(new MorphTrait(target));
-                    } else if (Objects.equals(args[1], "stop")) {
+                    } else if (Objects.equals(args[0], "stop")) {
                         HerobrineData.herobrine.removeTrait(MorphTrait.class);
                     }
                 }else{
