@@ -1,9 +1,6 @@
 package io.github.greasyrooster1.quantumsherobrine;
 
-import io.github.greasyrooster1.quantumsherobrine.Commands.ExplodeCommand;
-import io.github.greasyrooster1.quantumsherobrine.Commands.FeedCommand;
-import io.github.greasyrooster1.quantumsherobrine.Commands.HealCommand;
-import io.github.greasyrooster1.quantumsherobrine.Commands.TestCommand;
+import io.github.greasyrooster1.quantumsherobrine.Commands.*;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -20,6 +17,7 @@ public final class QuantumsHerobrine extends JavaPlugin {
         getCommand("heal").setExecutor(new HealCommand());
         new FeedCommand().register();
         new ExplodeCommand().register();
+        new HerobrineCommand().register();
     }
 
     @Override
