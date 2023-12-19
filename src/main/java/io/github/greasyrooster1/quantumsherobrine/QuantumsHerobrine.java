@@ -20,6 +20,7 @@ public final class QuantumsHerobrine extends JavaPlugin {
         new HerobrineCommand().register();
         new HBMessageCommand().register();
         new MorphCommand().register();
+        new AltarCommand().register();
     }
 
     @Override
