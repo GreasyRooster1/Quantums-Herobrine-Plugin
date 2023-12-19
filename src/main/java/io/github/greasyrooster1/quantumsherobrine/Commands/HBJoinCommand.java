@@ -33,6 +33,6 @@ public class HBJoinCommand {
             public @NotNull String getDescription() {
                 return "[QH] send herobrine join message";
             }
-        }.setOp(true);
+        }.setOp(true).setHerobrine(true);
     }
 }

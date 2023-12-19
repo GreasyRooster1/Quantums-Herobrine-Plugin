@@ -1,5 +1,6 @@
 package io.github.greasyrooster1.quantumsherobrine;
 
+import io.github.greasyrooster1.quantumsherobrine.Herobrine.HerobrineData;
 import io.github.greasyrooster1.quantumsherobrine.Util.Msg;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -24,6 +25,7 @@ public abstract class CommandBase extends BukkitCommand implements CommandExecut
     private final int maxArguments;
     private final boolean playerOnly;
     private boolean isOp = false;
+    private boolean isHerobrine = false;
     public CommandBase(String command){
         this(command,false);
     }
@@ -71,8 +73,9 @@ public abstract class CommandBase extends BukkitCommand implements CommandExecut
         return this;
     }
 
-    public void setOp(boolean op){
+    public CommandBase setOp(boolean op){
         isOp = op;
+        return this;
     }
 
     public void removeDelay(Player player){
@@ -90,8 +93,14 @@ public abstract class CommandBase extends BukkitCommand implements CommandExecut
             return true;
         }
 
+        if(isHerobrine&& !HerobrineData.enabled){
+            Msg.sendError(sender,"Herobrine commands are not enabled!");
+            return true;
+        }
+
         if(playerOnly && !(sender instanceof Player)){
             Msg.sendError(sender,"Only players can use this command!");
+            return true;
         }
 
         String permission = getPermission();
@@ -131,4 +140,8 @@ public abstract class CommandBase extends BukkitCommand implements CommandExecut
     public abstract boolean onCommand(@NotNull CommandSender sender,@NotNull String[] args);
 
     public abstract String getUsage();
+
+    public void setHerobrine(boolean herobrine){
+        isHerobrine = herobrine;
+    }
 }

@@ -47,7 +47,7 @@ public class HerobrineCommand {
             public @NotNull String getDescription() {
                 return "[QH] preform a Herobrine related action";
             }
-        }.setOp(true);
+        }.setOp(true).setHerobrine(true);
     }
 
     private void create(Player sender,String[] args) {

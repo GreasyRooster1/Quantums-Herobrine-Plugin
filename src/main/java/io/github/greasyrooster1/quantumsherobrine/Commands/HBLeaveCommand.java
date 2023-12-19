@@ -33,6 +33,6 @@ public class HBLeaveCommand {
             public @NotNull String getDescription() {
                 return "[QH] send herobrine leave message";
             }
-        }.setOp(true);
+        }.setOp(true).setHerobrine(true);
     }
 }

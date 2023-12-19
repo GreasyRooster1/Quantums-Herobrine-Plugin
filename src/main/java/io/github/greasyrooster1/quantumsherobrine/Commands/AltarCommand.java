@@ -40,7 +40,7 @@ public class AltarCommand {
             public @NotNull String getDescription() {
                 return "[QH] create a herobrine altar";
             }
-        }.setOp(true);
+        }.setOp(true).setHerobrine(true);
     }
 
     private void setBlock(Player p, Location loc, Material mat){

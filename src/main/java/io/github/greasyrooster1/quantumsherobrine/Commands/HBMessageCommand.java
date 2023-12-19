@@ -38,6 +38,6 @@ public class HBMessageCommand {
             public @NotNull String getDescription() {
                 return "[QH] broadcast a chat message as herobrine, use &a, &ad, and &0 for red, dark red, and black";
             }
-        }.setOp(true);
+        }.setOp(true).setHerobrine(true);
     }
 }

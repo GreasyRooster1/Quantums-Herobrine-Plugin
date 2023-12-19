@@ -44,6 +44,6 @@ public class MorphCommand {
             public @NotNull String getDescription() {
                 return "[QH] morph into herobrine";
             }
-        }.setOp(true);
+        }.setOp(true).setHerobrine(true);
     }
 }
