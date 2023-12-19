@@ -9,9 +9,7 @@ import org.bukkit.command.CommandMap;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.defaults.BukkitCommand;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.SimplePluginManager;
-import org.eclipse.aether.util.repository.SimpleArtifactDescriptorPolicy;
 import org.jetbrains.annotations.NotNull;
 
 import java.lang.reflect.Field;
@@ -121,7 +119,7 @@ public abstract class CommandBase extends BukkitCommand implements CommandExecut
                 return true;
             }
             delayedPlayers.add(player.getName());
-            Bukkit.getScheduler().scheduleSyncDelayedTask(QuantumsHerobrine.getInstace(),()->{
+            Bukkit.getScheduler().scheduleSyncDelayedTask(QuantumsHerobrine.getInstance(),()->{
                 delayedPlayers.remove(player.getName());
             }, 20L *delay);
         }

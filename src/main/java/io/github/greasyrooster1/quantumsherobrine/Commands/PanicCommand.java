@@ -8,7 +8,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
-import java.util.Collection;
 
 public class PanicCommand {
     public void register(){
@@ -19,7 +18,7 @@ public class PanicCommand {
                     panic(sender);
                     if(args[0].equals("total")){
                         Msg.sendError(sender, "DISABLING PLUGIN...");
-                        Bukkit.getPluginManager().disablePlugin(QuantumsHerobrine.getInstace());
+                        Bukkit.getPluginManager().disablePlugin(QuantumsHerobrine.getInstance());
                         Msg.sendError(sender, "Thank you for using Quantum's Herobrine plugin");
                         Msg.sendError(sender, "Plugin has now been disabled");
                     }else {
