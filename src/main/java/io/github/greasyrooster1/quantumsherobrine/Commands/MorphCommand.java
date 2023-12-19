@@ -25,8 +25,10 @@ public class MorphCommand {
                     if (Objects.equals(args[0], "start")) {
                         HerobrineData.herobrine.removeTrait(MorphTrait.class);
                         HerobrineData.herobrine.addTrait(new MorphTrait(target));
+                        ((Player) sender).setInvisible(true);
                     } else if (Objects.equals(args[0], "stop")) {
                         HerobrineData.herobrine.removeTrait(MorphTrait.class);
+                        ((Player) sender).setInvisible(false);
                     }
                 }else{
                     Msg.sendError(sender,"you need to specify start or stop ( /morph <stop|start>)");
