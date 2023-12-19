@@ -51,13 +51,18 @@ public class HerobrineCommand {
     }
 
     private void create(Player sender,String[] args) {
-        NPC npc = CitizensAPI.getNPCRegistry().createNPC(EntityType.PLAYER, "Herobrinee");
-        npc.spawn(sender.getLocation());
-        npc.getEntity();
-        HerobrineData.herobrine = npc;
+        if(HerobrineData.herobrine==null) {
+            NPC npc = CitizensAPI.getNPCRegistry().createNPC(EntityType.PLAYER, "Herobrinee");
+            npc.spawn(sender.getLocation());
+            npc.getEntity();
+            HerobrineData.herobrine = npc;
+        }else{
+            Msg.sendError(sender,"there is already an active herobrine!");
+        }
     }
     private void remove(Player sender,String[] args) {
         HerobrineData.herobrine.despawn();
+        HerobrineData.herobrine = null;
     }
     private void walk(Player sender,String[] args) {
         Location loc = null;
