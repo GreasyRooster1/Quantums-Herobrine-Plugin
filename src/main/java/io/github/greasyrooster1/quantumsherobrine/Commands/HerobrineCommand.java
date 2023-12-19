@@ -1,6 +1,7 @@
 package io.github.greasyrooster1.quantumsherobrine.Commands;
 
 import io.github.greasyrooster1.quantumsherobrine.CommandBase;
+import io.github.greasyrooster1.quantumsherobrine.Herobrine.GenocideTrait;
 import io.github.greasyrooster1.quantumsherobrine.Herobrine.HerobrineData;
 import io.github.greasyrooster1.quantumsherobrine.Herobrine.MurderTrait;
 import io.github.greasyrooster1.quantumsherobrine.Herobrine.TrackTrait;
@@ -30,7 +31,8 @@ public class HerobrineCommand {
                         case "face": face(player,args); break;
                         case "track": track(player,args); break;
                         case "murder": murder(player,args); break;
-                        default:Msg.sendError(sender,"please specify an action (create|remove|walk|face|track|murder)"); break;
+                        case "genocide": genocide(player,args); break;
+                        default:Msg.sendError(sender,"please specify an action (create|remove|walk|face|track|murder|genocide)"); break;
                     }
                 }
                 return true;
@@ -38,7 +40,7 @@ public class HerobrineCommand {
 
             @Override
             public String getUsage() {
-                return "/herobrine <create|remove|walk|face|track|murder> [target] [x] [y] [z]";
+                return "/herobrine <create|remove|walk|face|track|murder|genocide> [target] [x] [y] [z]";
             }
 
             @Override
@@ -123,6 +125,27 @@ public class HerobrineCommand {
             }
         }else{
             Msg.sendError(sender,"you need to specify start or stop ( /herobrine murder <stop|start> [player])");
+        }
+    }
+    private void genocide(Player sender,String[] args) {
+        Player target = sender;
+        if(args.length==2) {
+            if (Objects.equals(args[1], "start")) {
+                HerobrineData.herobrine.removeTrait(GenocideTrait.class);
+                HerobrineData.herobrine.addTrait(new GenocideTrait(target));
+            } else if (Objects.equals(args[1], "stop")) {
+                HerobrineData.herobrine.removeTrait(GenocideTrait.class);
+            }
+        }else if(args.length==3){
+            target = Bukkit.getPlayer(args[1]);
+            if (Objects.equals(args[2], "start")) {
+                HerobrineData.herobrine.removeTrait(GenocideTrait.class);
+                HerobrineData.herobrine.addTrait(new GenocideTrait(target));
+            } else if (Objects.equals(args[2], "stop")) {
+                HerobrineData.herobrine.removeTrait(GenocideTrait.class);
+            }
+        }else{
+            Msg.sendError(sender,"you need to specify start or stop ( /herobrine genocide <stop|start> [player])");
         }
     }
 }
