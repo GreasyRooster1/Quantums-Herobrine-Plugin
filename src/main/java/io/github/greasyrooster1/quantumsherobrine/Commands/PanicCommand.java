@@ -4,10 +4,15 @@ import io.github.greasyrooster1.quantumsherobrine.CommandBase;
 import io.github.greasyrooster1.quantumsherobrine.Herobrine.HerobrineData;
 import io.github.greasyrooster1.quantumsherobrine.QuantumsHerobrine;
 import io.github.greasyrooster1.quantumsherobrine.Util.Msg;
+import net.citizensnpcs.api.CitizensAPI;
+import net.citizensnpcs.api.event.DespawnReason;
+import net.citizensnpcs.api.npc.NPC;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.Iterator;
 
 public class PanicCommand {
     public void register(){
@@ -55,11 +60,17 @@ public class PanicCommand {
         Msg.send(sender,"&dKilling herobrine...");
         HerobrineData.herobrine.despawn();
         HerobrineData.herobrine = null;
+        Msg.send(sender,"&dDe-spawning Citizens NPCs");
+        for (Iterator<NPC> it = CitizensAPI.getNPCRegistry().iterator(); it.hasNext(); ) {
+            NPC npc = it.next();
+            npc.despawn();
+        }
         Msg.send(sender,"&dReverting altered player data...");
         for (Player p: sender.getServer().getOnlinePlayers()) {
             p.setInvisible(false);
         }
         Msg.send(sender,"&dDisabling herobrine commands...");
         HerobrineData.enabled = false;
+        Msg.sendError(sender, "If there were multiple Citizens NPCs that were removed please use /citizens save");
     }
 }
