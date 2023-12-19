@@ -2,6 +2,7 @@ package io.github.greasyrooster1.quantumsherobrine.Commands;
 
 import io.github.greasyrooster1.quantumsherobrine.CommandBase;
 import io.github.greasyrooster1.quantumsherobrine.Herobrine.HerobrineData;
+import io.github.greasyrooster1.quantumsherobrine.Herobrine.MurderTrait;
 import io.github.greasyrooster1.quantumsherobrine.Herobrine.TrackTrait;
 import io.github.greasyrooster1.quantumsherobrine.Util.Msg;
 import net.citizensnpcs.api.CitizensAPI;
@@ -28,7 +29,8 @@ public class HerobrineCommand {
                         case "walk": walk(player,args); break;
                         case "face": face(player,args); break;
                         case "track": track(player,args); break;
-                        default:Msg.sendError(sender,"please specify an action (create|remove|walk|face|track)"); break;
+                        case "murder": murder(player,args); break;
+                        default:Msg.sendError(sender,"please specify an action (create|remove|walk|face|track|murder)"); break;
                     }
                 }
                 return true;
@@ -36,7 +38,7 @@ public class HerobrineCommand {
 
             @Override
             public String getUsage() {
-                return "/herobrine <create|remove|walk|face|track> [target] [x] [y] [z]";
+                return "/herobrine <create|remove|walk|face|track|murder> [target] [x] [y] [z]";
             }
 
             @Override
@@ -82,14 +84,45 @@ public class HerobrineCommand {
 
     private void track(Player sender,String[] args) {
         Player target = sender;
-        if(args.length>=2) {
+        if(args.length==2) {
             if (Objects.equals(args[1], "start")) {
+                HerobrineData.herobrine.removeTrait(TrackTrait.class);
                 HerobrineData.herobrine.addTrait(new TrackTrait(target));
             } else if (Objects.equals(args[1], "stop")) {
                 HerobrineData.herobrine.removeTrait(TrackTrait.class);
             }
+        }else if(args.length==3){
+            target = Bukkit.getPlayer(args[1]);
+            if (Objects.equals(args[2], "start")) {
+                HerobrineData.herobrine.removeTrait(TrackTrait.class);
+                HerobrineData.herobrine.addTrait(new TrackTrait(target));
+            } else if (Objects.equals(args[2], "stop")) {
+                HerobrineData.herobrine.removeTrait(TrackTrait.class);
+            }
         }else{
-            Msg.sendError(sender,"you need to specify start or stop ( /herobrine track <stop|start> )");
+            Msg.sendError(sender,"you need to specify start or stop ( /herobrine track <stop|start> [player])");
+        }
+    }
+
+    private void murder(Player sender,String[] args) {
+        Player target = sender;
+        if(args.length==2) {
+            if (Objects.equals(args[1], "start")) {
+                HerobrineData.herobrine.removeTrait(MurderTrait.class);
+                HerobrineData.herobrine.addTrait(new MurderTrait(target));
+            } else if (Objects.equals(args[1], "stop")) {
+                HerobrineData.herobrine.removeTrait(MurderTrait.class);
+            }
+        }else if(args.length==3){
+            target = Bukkit.getPlayer(args[1]);
+            if (Objects.equals(args[2], "start")) {
+                HerobrineData.herobrine.removeTrait(MurderTrait.class);
+                HerobrineData.herobrine.addTrait(new MurderTrait(target));
+            } else if (Objects.equals(args[2], "stop")) {
+                HerobrineData.herobrine.removeTrait(MurderTrait.class);
+            }
+        }else{
+            Msg.sendError(sender,"you need to specify start or stop ( /herobrine murder <stop|start> [player])");
         }
     }
 }
