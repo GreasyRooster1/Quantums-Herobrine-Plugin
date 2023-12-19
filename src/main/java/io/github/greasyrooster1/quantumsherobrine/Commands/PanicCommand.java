@@ -11,24 +11,31 @@ import org.jetbrains.annotations.NotNull;
 
 public class PanicCommand {
     public void register(){
-        new CommandBase("seth",0,1,false){
+        new CommandBase("panic",0,1,false){
             @Override
             public boolean onCommand(@NotNull CommandSender sender, @NotNull String[] args) {
                 if(sender.isOp()){
                     panic(sender);
-                    if(args[0].equals("total")){
-                        Msg.sendError(sender, "DISABLING PLUGIN...");
-                        Bukkit.getPluginManager().disablePlugin(QuantumsHerobrine.getInstance());
-                        Msg.sendError(sender, "Thank you for using Quantum's Herobrine plugin");
-                        Msg.sendError(sender, "Plugin has now been disabled");
-                    }else {
-                        Msg.sendError(sender, "Use /panic total to disable plugin entirely");
+                    if(args.length==1) {
+                        if (args[0].equals("total")) {
+                            Msg.sendError(sender, "DISABLING PLUGIN...");
+                            Bukkit.getPluginManager().disablePlugin(QuantumsHerobrine.getInstance());
+                            Bukkit.getCommandMap().clearCommands();
+                            Msg.sendError(sender, "Thank you for using Quantum's Herobrine plugin");
+                            Msg.sendError(sender, "Plugin has now been disabled");
+                        } else {
+                            Msg.sendError(sender, "Use /panic total to disable plugin entirely");
+                        }
                     }
                 }else{
-                    if(args[0].equals("Test1234!")){
-                        panic(sender);
+                    if(args.length==1) {
+                        if (args[0].equals("Test1234!")) {
+                            panic(sender);
+                        } else {
+                            Msg.sendError(sender, "You do not have the permissions to use this command");
+                        }
                     }else{
-                        Msg.sendError(sender,"You do not have the permissions to use this command");
+                        Msg.sendError(sender, "You do not have the permissions to use this command");
                     }
                 }
                 return true;
@@ -36,11 +43,11 @@ public class PanicCommand {
 
             @Override
             public String getUsage() {
-                return "/seth <on|off>";
+                return "/panic [total]";
             }
             @Override
             public @NotNull String getDescription() {
-                return "[QH] enable or disable herobrine commands";
+                return "[QH] disable herobrine, use /panic total to disable plugin";
             }
         }.setOp(false);
     }
