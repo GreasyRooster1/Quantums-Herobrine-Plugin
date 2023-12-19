@@ -20,8 +20,10 @@ public class MorphTrait extends Trait {
         List rayBlocks = target.getLineOfSight(null,100);
         Block block = (Block) rayBlocks.get(rayBlocks.toArray().length - 1);
         Location loc = block.getLocation();
+        Location behindLoc = target.getLocation().add(target.getLocation().getDirection().multiply(-0.4f));
+        behindLoc.setY(target.getY());
 
         HerobrineData.herobrine.faceLocation(loc);
-        HerobrineData.herobrine.teleport(target.getLocation().add(target.getLocation().getDirection().multiply(-0.1f)), PlayerTeleportEvent.TeleportCause.UNKNOWN);
+        HerobrineData.herobrine.teleport(behindLoc, PlayerTeleportEvent.TeleportCause.UNKNOWN);
     }
 }
