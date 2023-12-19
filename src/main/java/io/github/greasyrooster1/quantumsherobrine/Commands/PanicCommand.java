@@ -23,6 +23,8 @@ public class PanicCommand {
                     panic(sender);
                     if(args.length==1) {
                         if (args[0].equals("total")) {
+                            Msg.sendError(sender, "Shutdown Citizens...");
+                            CitizensAPI.shutdown();
                             Msg.sendError(sender, "DISABLING PLUGIN...");
                             Bukkit.getPluginManager().disablePlugin(QuantumsHerobrine.getInstance());
                             Bukkit.getCommandMap().clearCommands();
@@ -67,6 +69,7 @@ public class PanicCommand {
             NPC npc = it.next();
             npc.despawn();
         }
+        CitizensAPI.getNPCRegistry().deregisterAll();
         Msg.send(sender,"&dReverting altered player data...");
         for (Player p: sender.getServer().getOnlinePlayers()) {
             p.setInvisible(false);
@@ -74,5 +77,7 @@ public class PanicCommand {
         Msg.send(sender,"&dDisabling herobrine commands...");
         HerobrineData.enabled = false;
         Msg.sendError(sender, "If there were multiple Citizens NPCs that were removed please use /citizens save");
+        Msg.sendError(sender, "Also, make sure to set the Citizens config property \"save-tast/delay\" to 9,999,999 (its towards the bottom of the file)");
+        Msg.sendError(sender, "Config file is located at /plugins/Citizens/config.yml ");
     }
 }

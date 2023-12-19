@@ -34,6 +34,7 @@ public final class QuantumsHerobrine extends JavaPlugin {
             NPC npc = it.next();
             npc.despawn();
         }
+        CitizensAPI.getNPCRegistry().deregisterAll();
     }
 
     public void registerHerobrineCommands(){
