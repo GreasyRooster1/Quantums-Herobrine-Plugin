@@ -20,6 +20,7 @@ public final class QuantumsHerobrine extends JavaPlugin {
 
         new SetHCommand().register();
         new PanicCommand().register();
+        new DespawnCommand().register();
 
         getCommand("test").setExecutor(new TestCommand());
         getCommand("heal").setExecutor(new HealCommand());
