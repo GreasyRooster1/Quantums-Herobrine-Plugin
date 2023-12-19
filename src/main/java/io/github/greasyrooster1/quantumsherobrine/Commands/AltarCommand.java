@@ -19,9 +19,7 @@ public class AltarCommand {
                 World w = p.getWorld();
                 for (int i = -1; i <=1 ; i++) {
                     for (int j = -1; j <=1 ; j++) {
-                        for (int k = -1; k <=1 ; k++) {
-                            setBlock(p,new Location(w,i,j,k),Material.GOLD_BLOCK);
-                        }
+                        setBlock(p,new Location(w,i,0,j),Material.GOLD_BLOCK);
                     }
                 }
                 setBlock(p,new Location(w,0,1,0),Material.NETHERRACK);
