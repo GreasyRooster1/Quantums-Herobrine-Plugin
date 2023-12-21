@@ -1,9 +1,12 @@
 package io.github.greasyrooster1.quantumsherobrine;
 
-import io.github.greasyrooster1.quantumsherobrine.Commands.*;
+import io.github.greasyrooster1.quantumsherobrine.Commands.Admin.*;
+import io.github.greasyrooster1.quantumsherobrine.Commands.Herobrine.*;
+import io.github.greasyrooster1.quantumsherobrine.Events.PlayerEvents;
 import net.citizensnpcs.api.CitizensAPI;
 import net.citizensnpcs.api.npc.NPC;
-import org.bukkit.plugin.Plugin;
+import org.bukkit.Bukkit;
+import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Iterator;
@@ -28,6 +31,9 @@ public final class QuantumsHerobrine extends JavaPlugin {
         new ExplodeCommand().register();
         registerHerobrineCommands();
         clearCitizens();
+
+        Listener eventListener = new PlayerEvents();
+        Bukkit.getPluginManager().registerEvents( eventListener, this );
     }
 
     public void clearCitizens(){
