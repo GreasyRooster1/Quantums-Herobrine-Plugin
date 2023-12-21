@@ -9,8 +9,6 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.Objects;
-
 public class PlayerEvents implements Listener {
     @EventHandler
     public void onPlayerClicks(PlayerInteractEvent event) {
@@ -20,8 +18,10 @@ public class PlayerEvents implements Listener {
 
         if (action.equals(Action.RIGHT_CLICK_AIR) || action.equals(Action.RIGHT_CLICK_BLOCK)) {
             if(item!=null) {
-                if (Objects.requireNonNull(item.getItemMeta().lore()).get(0).contains(Component.text("QAT0x03"))) {
-                    player.sendMessage("You have right click a slime ball!");
+                if(item.getItemMeta().hasLore()) {
+                    if (item.getItemMeta().lore().get(0).contains(Component.text("QAT0x03"))) {
+                        player.sendMessage("You have right click a slime ball!");
+                    }
                 }
             }
         }
