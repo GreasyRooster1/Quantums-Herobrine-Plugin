@@ -4,6 +4,7 @@ import io.github.greasyrooster1.quantumsherobrine.CommandBase;
 import io.github.greasyrooster1.quantumsherobrine.Util.Msg;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.BufferedCommandSender;
 import org.bukkit.command.CommandSender;
@@ -13,6 +14,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -27,44 +29,18 @@ public class AdminToolsCommand {
             @Override
             public boolean onCommand(@NotNull CommandSender sender, @NotNull String[] args) {
                 Inventory inventory = Bukkit.createInventory((InventoryHolder) sender,27);
-                ItemStack adminSword = new ItemStack(Material.WOODEN_SWORD);
-                adminSword.addUnsafeEnchantment(Enchantment.DAMAGE_ALL,999);
-                adminSword.getItemMeta().setUnbreakable(true);
-                adminSword.getItemMeta().setDisplayName("Admin Sword");
-                ArrayList<Component> lore = new ArrayList<>();
-                lore.add( text("QAT0x01"));
-                adminSword.getItemMeta().lore(lore);
+
+                ItemStack adminSword = createAdminTool(Material.NETHERITE_SWORD,Enchantment.DAMAGE_ALL,"&k&5QH &r&dAdmin Sword &k&5QH",1);
                 addItem(inventory,adminSword,11);
 
-                ItemStack adminPickaxe = new ItemStack(Material.NETHERITE_PICKAXE);
-                adminPickaxe.addUnsafeEnchantment(Enchantment.DIG_SPEED,999);
-                adminPickaxe.getItemMeta().setUnbreakable(true);
-                adminPickaxe.getItemMeta().setDisplayName("Admin Pickaxe");
-                ArrayList<Component> lore1 = new ArrayList<>();
-                lore.add( text("QAT0x02"));
-                adminSword.getItemMeta().lore(lore1);
+                ItemStack adminPickaxe = createAdminTool(Material.NETHERITE_PICKAXE,Enchantment.DIG_SPEED,"&k&5QH &r&dAdmin Pickaxe &k&5QH",2);
                 addItem(inventory,adminPickaxe,12);
 
-                ItemStack adminBow = new ItemStack(Material.BOW);
-                adminBow.addUnsafeEnchantment(Enchantment.ARROW_DAMAGE,999);
-                adminBow.addUnsafeEnchantment(Enchantment.ARROW_FIRE,5);
-                adminBow.addUnsafeEnchantment(Enchantment.ARROW_KNOCKBACK,5);
-                adminBow.getItemMeta().setUnbreakable(true);
-                adminBow.getItemMeta().setDisplayName("Admin Bow");
-                ArrayList<Component> lore2 = new ArrayList<>();
-                lore.add( text("QAT0x03"));
-                adminSword.getItemMeta().lore(lore2);
-                addItem(inventory,adminBow,13);
-
-                ItemStack smiteRod = new ItemStack(Material.BLAZE_ROD);
-                smiteRod.getItemMeta().setUnbreakable(true);
-                smiteRod.addUnsafeEnchantment(Enchantment.IMPALING,69);
-                smiteRod.getItemMeta().addItemFlags(ItemFlag.HIDE_ENCHANTS);
-                smiteRod.getItemMeta().setDisplayName("Smite Rod");
-                ArrayList<Component> lore3 = new ArrayList<>();
-                lore.add( text("QAT0x04"));
-                adminSword.getItemMeta().lore(lore3);
+                ItemStack smiteRod = createAdminTool(Material.BLAZE_ROD,Enchantment.CHANNELING,"&k&5QH &r&dSmite Rod &k&5QH",3);
                 addItem(inventory,smiteRod,13);
+
+                ItemStack bombRod = createAdminTool(Material.REDSTONE_TORCH,Enchantment.CHANNELING,"&k&5QH &r&dBomb Rod &k&5QH",3);
+                addItem(inventory,bombRod,14);
 
                 ((Player) sender).openInventory(inventory);
                 return true;
@@ -93,5 +69,18 @@ public class AdminToolsCommand {
 
     public void addItem(Inventory inventory,ItemStack item,int i){
         inventory.setItem(i,item);
+    }
+
+    public ItemStack createAdminTool(Material material,Enchantment enchantment,String name,int id){
+        ItemStack item = new ItemStack(material);
+        ItemMeta meta = item.getItemMeta();
+        item.addUnsafeEnchantment(enchantment,999);
+        meta.setUnbreakable(true);
+        meta.displayName(Component.text(ChatColor.translateAlternateColorCodes('&',name)));
+        ArrayList<Component> lore = new ArrayList<>();
+        lore.add( text("QAT0x0"+id));
+        meta.lore(lore);
+        item.setItemMeta(meta);
+        return item;
     }
 }
