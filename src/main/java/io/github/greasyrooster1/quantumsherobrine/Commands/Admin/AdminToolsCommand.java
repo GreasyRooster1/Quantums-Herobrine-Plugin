@@ -3,6 +3,8 @@ package io.github.greasyrooster1.quantumsherobrine.Commands.Admin;
 import io.github.greasyrooster1.quantumsherobrine.CommandBase;
 import io.github.greasyrooster1.quantumsherobrine.Util.Msg;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.TextColor;
+import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -30,16 +32,16 @@ public class AdminToolsCommand {
             public boolean onCommand(@NotNull CommandSender sender, @NotNull String[] args) {
                 Inventory inventory = Bukkit.createInventory((InventoryHolder) sender,27);
 
-                ItemStack adminSword = createAdminTool(Material.NETHERITE_SWORD,Enchantment.DAMAGE_ALL,"&k&5QH &r&dAdmin Sword &k&5QH",1);
+                ItemStack adminSword = createAdminTool(Material.NETHERITE_SWORD,Enchantment.DAMAGE_ALL,toolText("Admin Sword"),1);
                 addItem(inventory,adminSword,11);
 
-                ItemStack adminPickaxe = createAdminTool(Material.NETHERITE_PICKAXE,Enchantment.DIG_SPEED,"&k&5QH &r&dAdmin Pickaxe &k&5QH",2);
+                ItemStack adminPickaxe = createAdminTool(Material.NETHERITE_PICKAXE,Enchantment.DIG_SPEED,toolText("Admin Pickaxe"),2);
                 addItem(inventory,adminPickaxe,12);
 
-                ItemStack smiteRod = createAdminTool(Material.BLAZE_ROD,Enchantment.CHANNELING,"&k&5QH &r&dSmite Rod &k&5QH",3);
+                ItemStack smiteRod = createAdminTool(Material.BLAZE_ROD,Enchantment.CHANNELING,toolText("Smite Rod"),3);
                 addItem(inventory,smiteRod,13);
 
-                ItemStack bombRod = createAdminTool(Material.REDSTONE_TORCH,Enchantment.CHANNELING,"&k&5QH &r&dBomb Rod &k&5QH",3);
+                ItemStack bombRod = createAdminTool(Material.REDSTONE_TORCH,Enchantment.CHANNELING,toolText("Bomb Rod"),4);
                 addItem(inventory,bombRod,14);
 
                 ((Player) sender).openInventory(inventory);
@@ -71,16 +73,22 @@ public class AdminToolsCommand {
         inventory.setItem(i,item);
     }
 
-    public ItemStack createAdminTool(Material material,Enchantment enchantment,String name,int id){
+    public ItemStack createAdminTool(Material material,Enchantment enchantment,Component name,int id){
         ItemStack item = new ItemStack(material);
         ItemMeta meta = item.getItemMeta();
         item.addUnsafeEnchantment(enchantment,999);
         meta.setUnbreakable(true);
-        meta.displayName(Component.text(ChatColor.translateAlternateColorCodes('&',name)));
+        meta.displayName(name);
         ArrayList<Component> lore = new ArrayList<>();
         lore.add( text("QAT0x0"+id));
         meta.lore(lore);
         item.setItemMeta(meta);
         return item;
+    }
+
+    public Component toolText(String name){
+        return Component.text("QH").color(TextColor.color(0,0,0)).decorate(TextDecoration.OBFUSCATED).decorate(TextDecoration.BOLD)
+                .append(Component.text(name).color(TextColor.color(220,0,255)))
+                .append(Component.text("QH").color(TextColor.color(0,0,0)).decorate(TextDecoration.OBFUSCATED).decorate(TextDecoration.BOLD));
     }
 }
