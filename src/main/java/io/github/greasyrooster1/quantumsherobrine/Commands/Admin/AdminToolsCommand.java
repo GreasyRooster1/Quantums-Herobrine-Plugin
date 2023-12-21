@@ -8,6 +8,7 @@ import org.bukkit.Material;
 import org.bukkit.command.BufferedCommandSender;
 import org.bukkit.command.CommandSender;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemFlag;
@@ -64,6 +65,8 @@ public class AdminToolsCommand {
                 lore.add( text("QAT0x04"));
                 adminSword.getItemMeta().lore(lore3);
                 addItem(inventory,smiteRod,13);
+
+                ((Player) sender).openInventory(inventory);
                 return true;
             }
 
