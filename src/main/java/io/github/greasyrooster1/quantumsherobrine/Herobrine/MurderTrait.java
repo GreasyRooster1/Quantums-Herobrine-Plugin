@@ -6,6 +6,8 @@ import org.bukkit.entity.Player;
 
 import javax.swing.text.Position;
 
+import java.time.LocalDateTime;
+
 import static java.lang.Math.pow;
 
 public class MurderTrait extends Trait {
@@ -17,7 +19,9 @@ public class MurderTrait extends Trait {
 
     @Override
     public void run() {
-        HerobrineData.herobrine.getNavigator().setTarget(target.getLocation());
+        if(LocalDateTime.now().getSecond()%10==0) {
+            HerobrineData.herobrine.getNavigator().setTarget(target.getLocation());
+        }
         HerobrineData.herobrine.faceLocation(target.getLocation());
         Location herobrinePos = HerobrineData.herobrine.getEntity().getLocation();
         double killDist = 2;
