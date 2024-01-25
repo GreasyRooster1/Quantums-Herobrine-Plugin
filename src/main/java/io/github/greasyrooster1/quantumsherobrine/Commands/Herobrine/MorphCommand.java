@@ -21,6 +21,10 @@ public class MorphCommand {
             @Override
             public boolean onCommand(@NotNull CommandSender sender, @NotNull String[] args) {
                 Player target = (Player) sender;
+                if(!HerobrineData.citizensInstalled){
+                    Msg.sendError(sender,"Citizens is not installed on this server");
+                    return true;
+                }
                 if(args.length==1) {
                     if (Objects.equals(args[0], "start")) {
                         HerobrineData.herobrine.removeTrait(MorphTrait.class);

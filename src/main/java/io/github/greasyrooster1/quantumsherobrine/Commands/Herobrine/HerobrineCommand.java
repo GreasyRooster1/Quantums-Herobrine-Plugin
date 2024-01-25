@@ -23,6 +23,10 @@ public class HerobrineCommand {
             @Override
             public boolean onCommand(@NotNull CommandSender sender, @NotNull String[] args) {
                 Player player = (Player) sender;
+                if(!HerobrineData.citizensInstalled){
+                    Msg.sendError(sender,"Citizens is not installed on this server");
+                    return true;
+                }
                 if(args.length>0) {
                     switch (args[0]){
                         case "create": create(player,args); break;

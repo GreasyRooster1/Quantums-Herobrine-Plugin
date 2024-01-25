@@ -1,6 +1,7 @@
 package io.github.greasyrooster1.quantumsherobrine;
 
 import io.github.greasyrooster1.quantumsherobrine.Commands.Admin.*;
+import io.github.greasyrooster1.quantumsherobrine.Commands.HelpCommand;
 import io.github.greasyrooster1.quantumsherobrine.Commands.Herobrine.*;
 import io.github.greasyrooster1.quantumsherobrine.Events.PlayerEvents;
 import net.citizensnpcs.api.CitizensAPI;
@@ -30,6 +31,7 @@ public final class QuantumsHerobrine extends JavaPlugin {
         new FeedCommand().register();
         new ExplodeCommand().register();
         new AdminToolsCommand().register();
+        new HelpCommand().register();
         registerHerobrineCommands();
         clearCitizens();
 
