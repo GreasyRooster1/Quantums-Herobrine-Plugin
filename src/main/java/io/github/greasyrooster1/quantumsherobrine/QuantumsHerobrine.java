@@ -4,6 +4,7 @@ import io.github.greasyrooster1.quantumsherobrine.Commands.Admin.*;
 import io.github.greasyrooster1.quantumsherobrine.Commands.HelpCommand;
 import io.github.greasyrooster1.quantumsherobrine.Commands.Herobrine.*;
 import io.github.greasyrooster1.quantumsherobrine.Events.PlayerEvents;
+import io.github.greasyrooster1.quantumsherobrine.Herobrine.HerobrineData;
 import net.citizensnpcs.api.CitizensAPI;
 import net.citizensnpcs.api.npc.NPC;
 import org.bukkit.Bukkit;
@@ -22,6 +23,8 @@ public final class QuantumsHerobrine extends JavaPlugin {
 
         plugin = this;
 
+        checkForCitizens();
+
         new SetHCommand().register();
         new PanicCommand().register();
         new DespawnCommand().register();
@@ -32,11 +35,18 @@ public final class QuantumsHerobrine extends JavaPlugin {
         new ExplodeCommand().register();
         new AdminToolsCommand().register();
         new HelpCommand().register();
+        new PlayerHeadCommand().register();
         registerHerobrineCommands();
         clearCitizens();
 
         Listener eventListener = new PlayerEvents();
         Bukkit.getPluginManager().registerEvents( eventListener, this );
+    }
+
+    public void checkForCitizens(){
+        if(Bukkit.getPluginManager().isPluginEnabled("Citizens")){
+            HerobrineData.citizensInstalled = true;
+        }
     }
 
     public void clearCitizens(){
