@@ -34,19 +34,22 @@ public class AdminToolsCommand {
                 Inventory inventory = Bukkit.createInventory((InventoryHolder) sender,27);
 
                 ItemStack adminSword = createAdminTool(Material.NETHERITE_SWORD,Enchantment.DAMAGE_ALL,toolText("Admin Sword"),1);
-                addItem(inventory,adminSword,11);
+                addItem(inventory,adminSword,10);
 
                 ItemStack adminPickaxe = createAdminTool(Material.NETHERITE_PICKAXE,Enchantment.DIG_SPEED,toolText("Admin Pickaxe"),2);
-                addItem(inventory,adminPickaxe,12);
+                addItem(inventory,adminPickaxe,11);
 
                 ItemStack smiteRod = createAdminTool(Material.BLAZE_ROD,Enchantment.CHANNELING,toolText("Smite Rod"),3);
-                addItem(inventory,smiteRod,13);
+                addItem(inventory,smiteRod,12);
 
-                ItemStack bombRod = createAdminTool(Material.REDSTONE_TORCH,Enchantment.CHANNELING,toolText("Bomb Rod"),4);
-                addItem(inventory,bombRod,14);
+                ItemStack bombRod = createAdminTool(Material.REDSTONE_TORCH,Enchantment.FIRE_ASPECT,toolText("Bomb Rod"),4);
+                addItem(inventory,bombRod,13);
 
                 ItemStack anvilRod = createAdminTool(Material.IRON_SHOVEL,Enchantment.CHANNELING,toolText("Anvil Rod"),5);
-                addItem(inventory,anvilRod,15);
+                addItem(inventory,anvilRod,14);
+
+                ItemStack lightningBlast = createAdminTool(Material.LIGHTNING_ROD,Enchantment.CHANNELING,toolText("Lightning Blast"),6);
+                addItem(inventory,lightningBlast,15);
 
                 ((Player) sender).openInventory(inventory);
                 return true;

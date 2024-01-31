@@ -30,11 +30,18 @@ public class PlayerEvents implements Listener {
                     }
                     if (item.getItemMeta().lore().get(0).toString().contains("QAT0x04")) {
                         Location loc = player.getTargetBlock(null, 256).getLocation();
-                        player.getWorld().createExplosion(loc,5);
+                        player.getWorld().createExplosion(loc,7);
                     }
                     if (item.getItemMeta().lore().get(0).toString().contains("QAT0x05")) {
                         Location loc = player.getTargetBlock(null, 256).getLocation().add(0,25,0);
                         player.getWorld().getBlockAt(loc).setType(Material.ANVIL,true);
+                    }
+                    if (item.getItemMeta().lore().get(0).toString().contains("QAT0x06")) {
+                        Location loc = player.getTargetBlock(null, 256).getLocation();
+                        for (int i = 0; i < 20; i++) {
+                            player.getWorld().strikeLightning(loc);
+                        }
+                        player.getWorld().createExplosion(loc,5);
                     }
                 }
             }
