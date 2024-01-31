@@ -19,7 +19,6 @@ public class PlayerEvents implements Listener {
         if (action.equals(Action.RIGHT_CLICK_AIR) || action.equals(Action.RIGHT_CLICK_BLOCK)) {
             if(item!=null) {
                 if(item.getItemMeta().hasLore()) {
-                    player.sendMessage(item.getItemMeta().lore().toString());
                     if (item.getItemMeta().lore().get(0).toString().contains("QAT0x03")) {
                         player.sendMessage("You have right click a slime ball!");
                     }

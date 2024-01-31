@@ -88,8 +88,8 @@ public class AdminToolsCommand {
     }
 
     public Component toolText(String name){
-        return Component.text("QH").color(TextColor.color(0,0,0)).decorate(TextDecoration.OBFUSCATED).decorate(TextDecoration.BOLD)
+        return Component.text("-=").color(TextColor.color(0,0,0)).decorate(TextDecoration.BOLD)
                 .append(Component.text(name).color(TextColor.color(220,0,255)).style(Style.empty()))
-                .append(Component.text("QH").color(TextColor.color(0,0,0)).decorate(TextDecoration.OBFUSCATED).decorate(TextDecoration.BOLD));
+                .append(Component.text("=-").color(TextColor.color(0,0,0)).decorate(TextDecoration.BOLD));
     }
 }
