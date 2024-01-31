@@ -45,6 +45,9 @@ public class AdminToolsCommand {
                 ItemStack bombRod = createAdminTool(Material.REDSTONE_TORCH,Enchantment.CHANNELING,toolText("Bomb Rod"),4);
                 addItem(inventory,bombRod,14);
 
+                ItemStack anvilRod = createAdminTool(Material.IRON_SHOVEL,Enchantment.CHANNELING,toolText("Anvil Rod"),5);
+                addItem(inventory,anvilRod,15);
+
                 ((Player) sender).openInventory(inventory);
                 return true;
             }
@@ -77,7 +80,7 @@ public class AdminToolsCommand {
     public ItemStack createAdminTool(Material material,Enchantment enchantment,Component name,int id){
         ItemStack item = new ItemStack(material);
         ItemMeta meta = item.getItemMeta();
-        item.addUnsafeEnchantment(enchantment,999);
+        item.addUnsafeEnchantment(enchantment,255);
         meta.setUnbreakable(true);
         meta.displayName(name);
         ArrayList<Component> lore = new ArrayList<>();
@@ -89,7 +92,7 @@ public class AdminToolsCommand {
 
     public Component toolText(String name){
         return Component.text("-=").color(TextColor.color(0,0,0)).decorate(TextDecoration.BOLD)
-                .append(Component.text(name).color(TextColor.color(220,0,255)).style(Style.empty()))
+                .append(Component.text(name).color(TextColor.color(220,0,255)))
                 .append(Component.text("=-").color(TextColor.color(0,0,0)).decorate(TextDecoration.BOLD));
     }
 }
