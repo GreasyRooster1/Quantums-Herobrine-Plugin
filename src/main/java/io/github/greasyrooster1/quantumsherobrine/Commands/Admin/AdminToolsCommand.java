@@ -80,7 +80,7 @@ public class AdminToolsCommand {
     public ItemStack createAdminTool(Material material,Enchantment enchantment,Component name,int id){
         ItemStack item = new ItemStack(material);
         ItemMeta meta = item.getItemMeta();
-        item.addUnsafeEnchantment(enchantment,255);
+        meta.addEnchant(enchantment,200,true);
         meta.setUnbreakable(true);
         meta.displayName(name);
         ArrayList<Component> lore = new ArrayList<>();
