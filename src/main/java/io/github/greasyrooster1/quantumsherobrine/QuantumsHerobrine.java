@@ -1,8 +1,11 @@
 package io.github.greasyrooster1.quantumsherobrine;
 
 import io.github.greasyrooster1.quantumsherobrine.Commands.Admin.*;
-import io.github.greasyrooster1.quantumsherobrine.Commands.HelpCommand;
+import io.github.greasyrooster1.quantumsherobrine.Commands.Util.DespawnCommand;
+import io.github.greasyrooster1.quantumsherobrine.Commands.Util.HelpCommand;
 import io.github.greasyrooster1.quantumsherobrine.Commands.Herobrine.*;
+import io.github.greasyrooster1.quantumsherobrine.Commands.Util.PanicCommand;
+import io.github.greasyrooster1.quantumsherobrine.Commands.Util.SetHCommand;
 import io.github.greasyrooster1.quantumsherobrine.Events.PlayerEvents;
 import io.github.greasyrooster1.quantumsherobrine.Herobrine.HerobrineData;
 import net.citizensnpcs.api.CitizensAPI;
@@ -19,24 +22,14 @@ public final class QuantumsHerobrine extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        //Bukkit.getPluginManager().registerEvents();
-
         plugin = this;
 
         checkForCitizens();
 
-        new SetHCommand().register();
-        new PanicCommand().register();
-        new DespawnCommand().register();
-
-        getCommand("test").setExecutor(new TestCommand());
-        getCommand("heal").setExecutor(new HealCommand());
-        new FeedCommand().register();
-        new ExplodeCommand().register();
-        new AdminToolsCommand().register();
-        new HelpCommand().register();
-        new PlayerHeadCommand().register();
+        registerUtilityCommands();
+        registerAdminCommands();
         registerHerobrineCommands();
+
         clearCitizens();
 
         Listener eventListener = new PlayerEvents();
@@ -55,6 +48,23 @@ public final class QuantumsHerobrine extends JavaPlugin {
             npc.despawn();
         }
         CitizensAPI.getNPCRegistry().deregisterAll();
+    }
+
+    public void registerUtilityCommands(){
+        new SetHCommand().register();
+        new PanicCommand().register();
+        new DespawnCommand().register();
+        new HelpCommand().register();
+    }
+
+    public void registerAdminCommands(){
+        getCommand("test").setExecutor(new TestCommand());
+        getCommand("heal").setExecutor(new HealCommand());
+        new FeedCommand().register();
+        new ExplodeCommand().register();
+        new AdminToolsCommand().register();
+        new PlayerHeadCommand().register();
+        new MassSpawnCommand().register();
     }
 
     public void registerHerobrineCommands(){

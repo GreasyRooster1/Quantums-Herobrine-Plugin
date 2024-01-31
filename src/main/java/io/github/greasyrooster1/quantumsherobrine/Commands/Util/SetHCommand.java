@@ -1,4 +1,4 @@
-package io.github.greasyrooster1.quantumsherobrine.Commands.Herobrine;
+package io.github.greasyrooster1.quantumsherobrine.Commands.Util;
 
 import io.github.greasyrooster1.quantumsherobrine.CommandBase;
 import io.github.greasyrooster1.quantumsherobrine.Herobrine.HerobrineData;

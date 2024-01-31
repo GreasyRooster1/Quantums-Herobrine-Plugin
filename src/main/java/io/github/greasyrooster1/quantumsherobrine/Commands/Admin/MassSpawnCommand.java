@@ -18,13 +18,22 @@ public class MassSpawnCommand {
                 Player player = (Player) sender;
                 if(args.length==2) {
                     for (int i = 0; i < Integer.parseInt(args[1]); i++) {
-                        player.getWorld().spawn(player.getLocation(), (Class) getEntityByName(args[0]).getClass());
+                        EntityType type = getEntityByName(args[0]);
+                        if(type==null){
+                            sendError(sender,"that isnt an entity");
+                        }else {
+                            player.getWorld().spawnEntity(player.getLocation(), type);
+                        }
                     }
                 } else if (args.length==1) {
-                    player.getWorld().spawn(player.getLocation(), (Class) getEntityByName(args[0]).getClass());
+                    EntityType type = getEntityByName(args[0]);
+                    if(type==null){
+                        sendError(sender,"that isnt an entity");
+                    }else {
+                        player.getWorld().spawnEntity(player.getLocation(), type);
+                    }
                 }else{
-                    sendError(sender,"please specify an entity()");
-                    sendUsage(sender);
+                    sendError(sender,"please specify an entity /multspawn (entity) [amount]");
                 }
                 return true;
             }
