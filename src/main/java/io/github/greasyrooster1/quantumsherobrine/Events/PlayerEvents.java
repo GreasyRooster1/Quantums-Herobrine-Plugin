@@ -1,8 +1,10 @@
 package io.github.greasyrooster1.quantumsherobrine.Events;
 
+import io.github.greasyrooster1.quantumsherobrine.Util.Util;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
@@ -13,6 +15,10 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
+
+import java.util.Random;
+
+import static io.github.greasyrooster1.quantumsherobrine.Util.Util.randint;
 
 public class PlayerEvents implements Listener {
     @EventHandler
@@ -42,6 +48,13 @@ public class PlayerEvents implements Listener {
                             player.getWorld().strikeLightning(loc);
                         }
                         player.getWorld().createExplosion(loc,5);
+                    }
+                    if (item.getItemMeta().lore().get(0).toString().contains("QAT0x07")) {
+                        for (Player p:player.getWorld().getPlayers()) {
+                            Sound[] sounds = {Sound.ENTITY_GHAST_WARN,Sound.AMBIENT_CAVE,Sound.ENTITY_HORSE_DEATH,Sound.ENTITY_VEX_DEATH,Sound.ENTITY_PHANTOM_DEATH,Sound.ENTITY_ENDERMAN_DEATH};
+                            Sound sound = sounds[new Random().nextInt(sounds.length)];
+                            p.playSound(p.getLocation(), sound, 500.0f, 1.0f);
+                        }
                     }
                 }
             }

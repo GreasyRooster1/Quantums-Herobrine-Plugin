@@ -48,8 +48,11 @@ public class AdminToolsCommand {
                 ItemStack anvilRod = createAdminTool(Material.IRON_SHOVEL,Enchantment.CHANNELING,toolText("Anvil Rod"),5);
                 addItem(inventory,anvilRod,14);
 
-                ItemStack lightningBlast = createAdminTool(Material.LIGHTNING_ROD,Enchantment.CHANNELING,toolText("Lightning Blast"),6);
+                ItemStack lightningBlast = createAdminTool(Material.LIGHTNING_ROD,Enchantment.CHANNELING,toolText("Bolt Rod"),6);
                 addItem(inventory,lightningBlast,15);
+
+                ItemStack spookySpeakers = createAdminTool(Material.MUSIC_DISC_11,Enchantment.ARROW_KNOCKBACK,toolText("Spooky Speakers"),7);
+                addItem(inventory,spookySpeakers,16);
 
                 ((Player) sender).openInventory(inventory);
                 return true;
