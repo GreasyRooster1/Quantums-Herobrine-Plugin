@@ -8,6 +8,7 @@ import io.github.greasyrooster1.quantumsherobrine.Herobrine.TrackTrait;
 import io.github.greasyrooster1.quantumsherobrine.Util.Msg;
 import net.citizensnpcs.api.CitizensAPI;
 import net.citizensnpcs.api.npc.NPC;
+import net.citizensnpcs.api.trait.Trait;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.command.CommandSender;
@@ -66,6 +67,10 @@ public class HerobrineCommand {
     }
     private void remove(Player sender,String[] args) {
         HerobrineData.herobrine.despawn();
+        for (Trait trait : HerobrineData.herobrine.getTraits()) {
+            HerobrineData.herobrine.removeTrait(trait.getClass());
+        }
+
         HerobrineData.herobrine = null;
     }
     private void walk(Player sender,String[] args) {
