@@ -19,14 +19,12 @@ public class MurderTrait extends Trait {
 
     @Override
     public void run() {
-        if(LocalDateTime.now().getSecond()%10==0) {
-            HerobrineData.herobrine.getNavigator().setTarget(target.getLocation());
-        }
+        HerobrineData.herobrine.getNavigator().setTarget(target.getLocation());
         HerobrineData.herobrine.faceLocation(target.getLocation());
         Location herobrinePos = HerobrineData.herobrine.getEntity().getLocation();
         double killDist = 2;
         if(pow(herobrinePos.x()-target.getX(),2)+pow(herobrinePos.y()-target.getY(),2)+pow(herobrinePos.z()-target.getZ(),2)<pow(killDist,2)){
-            target.damage(999,HerobrineData.herobrine.getEntity());
+            target.damage(9999);
         }
     }
 }

@@ -40,8 +40,14 @@ public class SoundsCommand {
                 addItem(inventory,enderman,11);
                 ItemStack vex = createDisk(Material.MUSIC_DISC_WAIT, Sound.ENTITY_VEX_DEATH,toolText("Vex"),3);
                 addItem(inventory,vex,12);
-                ItemStack horse = createDisk(Material.MUSIC_DISC_WAIT, Sound.ENTITY_VEX_DEATH,toolText("Vex"),3);
-                addItem(inventory,horse,12);
+                ItemStack horse = createDisk(Material.MUSIC_DISC_BLOCKS, Sound.ENTITY_HORSE_DEATH,toolText("Horse"),4);
+                addItem(inventory,horse,13);
+                ItemStack roar = createDisk(Material.MUSIC_DISC_STAL, Sound.ENTITY_ENDER_DRAGON_GROWL,toolText("Dragon Roar"),5);
+                addItem(inventory,roar,14);
+                ItemStack death = createDisk(Material.MUSIC_DISC_STRAD, Sound.ENTITY_ENDER_DRAGON_DEATH,toolText("Dragon Death"),6);
+                addItem(inventory,death,15);
+                ItemStack victory = createDisk(Material.MUSIC_DISC_CAT, Sound.UI_TOAST_CHALLENGE_COMPLETE,toolText("Victory"),7);
+                addItem(inventory,victory,16);
 
                 ((Player) sender).openInventory(inventory);
                 return true;
@@ -83,9 +89,7 @@ public class SoundsCommand {
     }
 
     public Component toolText(String name){
-        return Component.text("-=").color(TextColor.color(0,0,0)).decorate(TextDecoration.BOLD)
-                .append(Component.text(name).color(TextColor.color(220,0,255)))
-                .append(Component.text("=-").color(TextColor.color(0,0,0)).decorate(TextDecoration.BOLD));
+        return Component.text(name).color(TextColor.color(255,127,0)).decorate(TextDecoration.BOLD);
     }
     private Sound[] appendSound(Sound[] arr, Sound s){
         Sound[] newArray = Arrays.copyOf(arr, arr.length + 1);

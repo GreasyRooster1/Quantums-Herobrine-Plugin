@@ -14,9 +14,7 @@ public class TrackTrait extends Trait {
 
     @Override
     public void run() {
-        if(LocalDateTime.now().getSecond()%10==0) {
-            HerobrineData.herobrine.getNavigator().setTarget(target.getLocation());
-        }
+        HerobrineData.herobrine.getNavigator().setTarget(target.getLocation());
         HerobrineData.herobrine.faceLocation(target.getLocation());
     }
 }
