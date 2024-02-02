@@ -65,6 +65,7 @@ public final class QuantumsHerobrine extends JavaPlugin {
         new AdminToolsCommand().register();
         new PlayerHeadCommand().register();
         new MassSpawnCommand().register();
+        new SoundsCommand().register();
     }
 
     public void registerHerobrineCommands(){
