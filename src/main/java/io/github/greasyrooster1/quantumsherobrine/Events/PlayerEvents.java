@@ -10,6 +10,8 @@ import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.data.BlockData;
+import org.bukkit.entity.Damageable;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Fireball;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -21,6 +23,7 @@ import org.bukkit.util.Vector;
 
 import java.util.Random;
 
+import static io.github.greasyrooster1.quantumsherobrine.Util.Util.getTarget;
 import static io.github.greasyrooster1.quantumsherobrine.Util.Util.randint;
 
 public class PlayerEvents implements Listener {
@@ -33,6 +36,14 @@ public class PlayerEvents implements Listener {
         if (action.equals(Action.RIGHT_CLICK_AIR) || action.equals(Action.RIGHT_CLICK_BLOCK)) {
             if(item!=null) {
                 if(item.getItemMeta().hasLore()) {
+                    if (item.getItemMeta().lore().get(0).toString().contains("QAT0x01")) {
+                        Entity hitEntity = getTarget(player,player.getWorld().getEntities());
+                        if(Damageable.class.isAssignableFrom(hitEntity.getClass())){
+                            ((Damageable) hitEntity).damage(99999);
+                        }else{
+                            hitEntity.remove();
+                        }
+                    }
                     if (item.getItemMeta().lore().get(0).toString().contains("QAT0x03")) {
                         Location loc = player.getTargetBlock(null, 512).getLocation();
                         player.getWorld().strikeLightning(loc);
